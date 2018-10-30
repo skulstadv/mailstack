@@ -1,0 +1,4 @@
+<%- | $port,
+      $default_character,
+| -%>
+# This file is managed by Puppet. Please do not make manual changes.
