@@ -1,18 +1,10 @@
 class mailstack::db {
 
 
-  include mailstack
   # Get variable values from mailstack main class
   $db_root_password = $mailstack::db_root_password
   $db_username = $mailstack::db_username
   $db_password = $mailstack::db_password
-  $files       = $mailstack::files
-
-
-  # Show the agents what passwords and usernames are in use
-  #notify { "DB Using db_root_password: ${db_root_password}":}
-  #notify { "DB Using db_username: ${$db_username}":}
-  #notify { "DB Using db_password: ${db_password}":}
 
 
   # Set root password on mysql database

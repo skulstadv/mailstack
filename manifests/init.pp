@@ -48,7 +48,11 @@ class mailstack (
   $db_password         = 'mailpassword',
 
 ){
-  notify { "Mailstack: Using db_root_password: ${db_root_password}": }
-  notify { "Mailstack: Using db_username: ${db_username}": }
-  notify { "Mailstack: Using db_password: ${db_password}": }
+  #The mysql database is managed
+  class { 'mailstack::db': }
+
+  # Then postfix is managed after mysql database
+  class { 'mailstack::postfix':
+    require => Class['mailstack::db'],
+  }
 }
