@@ -16,7 +16,7 @@ class mailstack::db {
   # Copy SQL statements from puppet master and save to tmp
   file { "/tmp/sql/":
     ensure   => 'directory',
-    source   => "puppet:///modules/mailstack",
+    source   => "puppet:///modules/mailstack/sql",
     recurse   => 'remote',
   }
 
