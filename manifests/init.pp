@@ -55,4 +55,9 @@ class mailstack (
   class { 'mailstack::postfix':
     require => Class['mailstack::db'],
   }
+
+  # Then dovecot is managed after postfix
+  class { 'mailstack::dovecot':
+    require => Class['mailstack::postfix'],
+  }
 }
