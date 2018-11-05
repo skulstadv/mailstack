@@ -75,17 +75,17 @@ class mailstack::dovecot {
 
   # Copy dovecot config files
   file { "/etc/dovecot/":
-    ensure   => 'directory',
-    source   => "puppet:///modules/mailstack/dovecot",
-    recurse  => 'remote',
+    ensure  => 'directory',
+    source  => 'puppet:///modules/mailstack/dovecot',
+    recurse => 'remote',
   }
 
 
   # Copy dovecot config files
-  file { "/etc/dovecot/conf.d/":
-    ensure   => 'directory',
-    source   => "puppet:///modules/mailstack/dovecot/conf.d",
-    recurse   => 'remote',
+  file { '/etc/dovecot/conf.d/':
+    ensure  => 'directory',
+    source  => 'puppet:///modules/mailstack/dovecot/conf.d',
+    recurse => 'remote',
   }
 
 
