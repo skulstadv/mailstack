@@ -52,6 +52,20 @@ class mailstack::dovecot {
   }
 
 
+  # Change owner of /var/mail/* to vmail
+  exec { 'owner var/mail':
+    command => 'chown -R vmail:vmail /var/mail/*',
+    path    => $::path,
+  }
+
+
+  # Change owner of /var/mail/*/* to vmail
+  exec { 'owner var/mail':
+    command => 'chown -R vmail:vmail /var/mail/*/*',
+    path    => $::path,
+  }
+
+
   # Manage dovecot installation
   class { 'dovecot':
   }
