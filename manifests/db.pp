@@ -1,3 +1,4 @@
+# Class that manages the MySQL database
 class mailstack::db {
 
 

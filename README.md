@@ -67,3 +67,10 @@ Postfix and dovecot will be using all the same defaults as specified above in My
         }
 
 * When customizing email users and domains every occurence of the defaults in the .sql statements and config files in /files/ and subfolders should be replaced by the desired values
+
+* A new certificate for dovecot should be generated and put on the master in puppet::/module/mailstack/files/dovecot/ssl or generated on the agent like this:
+        openssl req -new -x509 -days 1000 -nodes -out "/etc/ssl/certs/dovecot.pem" -keyout "/etc/ssl/private/dovecot.pem"
+
+* The above certificate would be self signed, it is preferable to get a certificate from for instance letsencrypt.org that isnt self signed
+
+

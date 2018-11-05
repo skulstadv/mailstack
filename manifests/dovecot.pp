@@ -1,3 +1,4 @@
+# Class that manages Dovecot
 class mailstack::dovecot {
 
 

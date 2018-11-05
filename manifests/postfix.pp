@@ -1,4 +1,19 @@
+# Class for managing postfix
 class mailstack::postfix {
+
+
+  # Copy premade certificate *THIS MUST BE CHANGED BY USER*
+  file { "/etc/ssl/certs/dovecot.pem":
+    ensure   => 'present',
+    source   => "puppet:///modules/mailstack/postfix/ssl/certs/dovecot.pem",
+  }
+
+
+  # Copy premade certificate *THIS MUST BE CHANGED BY USER*
+  file { "/etc/ssl/private/dovecot.pem":
+    ensure   => 'present',
+    source   => "puppet:///modules/mailstack/postfix/ssl/private/dovecot.pem",
+  }
 
 
   # Install postfix-mysql package
@@ -7,12 +22,21 @@ class mailstack::postfix {
   }
 
 
-  # Manage postfix installation using our custom config directory
+  # Manage postfix installation
   class { 'postfix':
-    config_dir_source => "puppet:///modules/mailstack/postfix",
+    config_file_source => "puppet:///modules/mailstack/postfix/main/main.cf",
   }
 
 
+  # Copy postfix config files
+  file { "/etc/postfix/":
+    ensure   => 'directory',
+    source   => "puppet:///modules/mailstack/postfix",
+    recurse  => 'remote',
+  }
+
+
+# These functions are handy for testing your configuration
 #  # Make sure postfix can find the domains
 #  exec { "postfinstalledix-domains":
 #    command => "postmap -q example.com mysql:/etc/postfix/mysql-virtual-mailbox-domains.cf",
