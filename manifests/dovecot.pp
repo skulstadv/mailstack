@@ -52,6 +52,7 @@ class mailstack::dovecot {
   }
 
 
+
   # Change owner of /var/mail/* to vmail
   exec { 'owner var/mail/*':
     command => 'chown -R vmail:vmail /var/mail/*',
